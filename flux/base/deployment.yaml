@@ -12,6 +12,7 @@ spec:
       labels:
         app: my-app
     spec:
+      serviceAccountName: my-app-dev
       containers:
         - name: my-app
           image: nginx:1.14.2
