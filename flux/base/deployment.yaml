@@ -16,7 +16,7 @@ spec:
       serviceAccountName: my-app-dev
       containers:
         - name: my-app
-          image: nginx:1.14.2
+          image: earldata.jfrog.io/default-docker-virtual/my-app:0.1.0
           ports:
             - name: http
               containerPort: 80
