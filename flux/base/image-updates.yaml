@@ -1,0 +1,27 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: my-app-image-repository
+  namespace: my-app-dev
+spec:
+  interval: 1m
+  image: earldata.jfrog.io/default-docker-virtual/my-app
+  secretRef:
+    name: artifactory-pull-secret
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: my-app-dev
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: my-app-image-policy
+  namespace: my-app-dev
+spec:
+  imageRepositoryRef:
+    name: my-app-image-repository
+    namespace: my-app-dev
+  policy:
+    semver:
+      range: '>=0.1.0'
