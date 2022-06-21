@@ -14,6 +14,8 @@ spec:
         app: my-app
     spec:
       serviceAccountName: my-app-dev
+      imagePullSecrets:
+        - name: artifactory-pull-secret
       containers:
         - name: my-app
           image: earldata.jfrog.io/default-docker-virtual/my-app:0.1.0
